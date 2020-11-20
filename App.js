@@ -1,25 +1,24 @@
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 
-export default function App() {
+import Router from './Router'
+
+import LoadAssets from './src/utils/loadAssets'
+
+import { fonts } from './src/utils/fonts'
+
+const assets = []
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <FontAwesome name="apple" size={25} />
-      <MaterialIcons name="star" color="blue" size={25} />
-      {/* Create a button */}
-      <FontAwesome.Button name="facebook" backgroundColor="#3b5998" onPress={() => {}}>
-        Login with Facebook
-      </FontAwesome.Button>
-    </View>
-  );
+    <LoadAssets {...{fonts,assets}}>
+      <View style={{ flex: 1 }}>
+        <StatusBar barStyle={'light-content'}></StatusBar>
+        <Router></Router>
+      </View>
+    </LoadAssets>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
